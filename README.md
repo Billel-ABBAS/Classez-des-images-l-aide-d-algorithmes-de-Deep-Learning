@@ -1,58 +1,8 @@
-# Prédiction de la Race de Chiens 
+# Projet de Classification de Races de Chiens avec CNN et Transfer Learning
 
-## Introduction
+Le projet de ce notebook a été réalisé dans le cadre du cursus d'ingénieur machine learning proposé par Openclassrooms.
 
-Ce projet a été réalisé dans le cadre d'une étude approfondie sur les modèles de **computer vision** appliqués à la classification de la race des chiens. Il s'articule autour de la **comparaison entre différents modèles CNN** : des modèles personnalisés initialement construits, et l'utilisation de **modèles de transfert learning** préentraînés sur ImageNet.
-
-L'approche adoptée est itérative, avec plusieurs étapes successives d'amélioration des performances des modèles :
-
-1. **Modèle initial** : Entraînement d'un modèle CNN simple, avec du prétraitement d'images.
-2. **Optimisations** : Ajout de techniques telles que le **Dropout** et la **BatchNormalization**.
-3. **Data Augmentation** : Amélioration des performances avec des techniques de génération de données.
-4. **Transfert Learning** : Utilisation des modèles préentraînés **VGG16** et **Xception** avec des couches personnalisées.
-
-Les performances du modèle **Xception pré-entraîné** ont ensuite été comparées avec celles des modèles créés manuellement. Le dataset utilisé pour cet entraînement est constitué d'images de chiens triées en trois classes : **Silky Terrier**, **Golden Retriever** et **German Shepherd**.
-
-Tous les entraînements ont été réalisés sur GPU à l'aide de Google Colab. Le meilleur modèle a été intégré dans un démonstrateur développé avec le framework **Streamlit**.
-
-## Contenu du Repository
-
-- **Notebooks d'entraînement des modèles** : Ils documentent les différentes étapes de l'entraînement et de l'amélioration des modèles.
-  - **Notebook 1** : Prétraitement des données et augmentation d'images.
-  - **Notebook 2** : Création et optimisation de modèles CNN personnalisés.
-  - **Notebook 3** : Implémentation du transfert learning avec **VGG16** et **Xception**.
-- **API Streamlit** : Application Web permettant de prédire la race d'un chien à partir d'une image fournie par l'utilisateur.
-- **utils.py** : Fichier contenant les fonctions utilitaires pour le prétraitement des images, l'affichage des résultats et la création des modèles.
-
-## Datasets Utilisés
-
-Le dataset utilisé pour ce projet contient des images triées en trois classes de races de chiens :
-- **n02097658-Silky_Terrier**
-- **n02099601-Golden_Retriever**
-- **n02106662-German_Shepherd**
-
-Les données sont stockées dans le répertoire `data/`.
-
-## Modèles et Démarche
-
-### 1. Modèle Initial
-
-Dans le **notebook 2**, un modèle **CNN simple** est créé à partir de zéro avec des couches de convolution et des couches fully connected. Ce modèle est amélioré progressivement avec l'ajout de techniques d'optimisation telles que le **Dropout** et la **BatchNormalization**.
-
-### 2. Data Augmentation
-
-La **data augmentation** est appliquée pour enrichir le dataset et améliorer la généralisation du modèle. Les transformations incluent des rotations, des flips horizontaux/verticaux, des ajustements de luminosité, du zoom, etc.
-
-### 3. Transfert Learning
-
-Le **transfert learning** est mis en œuvre dans le **notebook 3**, où les modèles **VGG16** et **Xception**, préentraînés sur ImageNet, sont utilisés comme base. Des couches personnalisées sont ajoutées pour adapter les modèles à la classification de trois classes de chiens.
-
-### 4. Comparaison des Modèles
-
-Les performances des modèles sont comparées à l'aide de :
-- **Matrice de confusion** : Permet d'analyser les prédictions correctes et erronées pour chaque classe.
-- **Courbes de perte** : Visualisation des pertes d'entraînement et de validation au fil des époques.
-- **Rapport de classification** : Calcul de la précision, du rappel et du F1-score pour chaque classe.
+L'objectif du projet est de comparer un modèle CNN développé from "Scratch" avec des modèles CNN pré-entraînés utilisant du **Transfer Learning**. Plusieurs approches ont été testées pour entraîner un modèle capable de classifier des races de chiens, notamment les architectures **VGG16** et **Xception**.
 
 ## Résultats
 
@@ -77,6 +27,8 @@ L'application **Streamlit** a été déployée sur **Streamlit Cloud** et peut �
 
 Vous pouvez utiliser cette application pour télécharger une image de chien et obtenir une prédiction de la race de chien parmi les trois classes disponibles.
 
+---
+
 ## Mode d'emploi
 
 ### Installation des dépendances
@@ -87,7 +39,11 @@ Assurez-vous d'avoir installé toutes les dépendances nécessaires. Vous pouvez
 pip install -r requirements.txt
 ```
 
-### Structure du Projet
+---
+
+## Structure du Projet et Contenu des Notebooks
+
+Le projet contient plusieurs fichiers essentiels à la construction, l'entraînement et l'évaluation des modèles de classification de races de chiens.
 
 ```
 ├── data                    # Dossiers contenant les images de chiens pour l'entraînement
@@ -96,19 +52,32 @@ pip install -r requirements.txt
 │   └── n02106662-German_shepherd
 ├── model                   # Répertoire des modèles sauvegardés
 │   └── xception_best_model.keras
-├── Abbas_Billel_1_notebook_prétraitement_082024.ipynb
-├── Abbas_Billel_2_notebook_model_perso_082024.ipynb
-├── Abbas_Billel_3_notebook_model_transfer_learning_082024.ipynb
+├── Abbas_Billel_1_notebook_prétraitement_082024.ipynb   # Notebook 1 : Prétraitement des images
+├── Abbas_Billel_2_notebook_model_perso_082024.ipynb     # Notebook 2 : Création du modèle personnalisé CNN
+├── Abbas_Billel_3_notebook_model_transfer_learning_082024.ipynb  # Notebook 3 : Modèles pré-entraînés (VGG16 et Xception)
 ├── api.py                  # Fichier principal pour l'API Streamlit
 ├── utils.py                # Contient toutes les fonctions utilitaires (prétraitement, visualisation, modèles)
 └── README.md               # Ce fichier
 ```
 
-## Contribuer
+### Contenu des Notebooks
 
-Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce projet, suivez les étapes suivantes :
-1. **Fork** le projet.
-2. Créez une nouvelle branche (`git checkout -b feature/nouvelle-fonctionnalité`).
-3. Faites vos modifications et commitez-les (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`).
-4. Pushez sur la branche (`git push origin feature/nouvelle-fonctionnalité`).
-5. Créez une **pull request**.
+1. **Notebook 1 - Prétraitement des images :**
+   - Chargement et transformation des images de chiens (redimensionnement, ajustements de contraste, saturation, etc.).
+   - Application de techniques de **data augmentation** pour améliorer la robustesse des modèles.
+   - Visualisation des images transformées avec des exemples de techniques telles que le **flipping**, le **cropping** et la **normalisation**.
+
+2. **Notebook 2 - Création du modèle personnalisé CNN :**
+   - **Modèle simple** :
+     - Construction d'un **CNN basique** avec trois blocs de convolution suivis de couches de **max-pooling** et d'une couche entièrement connectée.
+     - Ce modèle a montré des performances de base mais a été limité en termes de précision et de généralisation sur les données de validation.
+   - **Modèle complexe** :
+     - Amélioration du modèle simple en ajoutant plus de couches de **convolution**, de **BatchNormalization**, et de **Dropout** pour mieux régulariser l'apprentissage et prévenir le surapprentissage.
+     - Bien que ce modèle soit plus performant que le modèle simple, il n'a pas atteint les niveaux de précision et de stabilité obtenus avec les modèles pré-entraînés.
+
+3. **Notebook 3 - Modèles pré-entraînés (VGG16 et Xception) :**
+   - Utilisation de modèles de **transfer learning** pré-entraînés tels que **VGG16** et **Xception**, initialement entraînés sur ImageNet.
+   - Comparaison des performances de ces modèles pré-entraînés avec le modèle personnalisé CNN.
+   - Évaluation finale et choix du modèle **Xception** comme meilleur modèle pour la tâche de classification de races de chiens.
+
+
