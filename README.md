@@ -69,15 +69,13 @@ Une application **Streamlit** a été développée pour permettre de prédire la
 - **Prédiction** : Le modèle prédit la race du chien parmi les trois classes disponibles.
 - **Affichage des résultats** : Le nom réel et le nom prédit de la race sont affichés sur l'interface.
 
-### Lancer l'API
+### Déploiement de l'API
 
-Pour lancer l'API avec **Streamlit**, exécutez la commande suivante :
+L'application **Streamlit** a été déployée sur **Streamlit Cloud** et peut être utilisée directement à partir de ce lien :
 
-```bash
-streamlit run api.py
-```
+[Accéder à l'application Streamlit](https://geekderbzsqrebfdqdbnce.streamlit.app/)
 
-Ouvrez un navigateur à l'adresse : [http://localhost:8501](http://localhost:8501) pour utiliser l'application.
+Vous pouvez utiliser cette application pour télécharger une image de chien et obtenir une prédiction de la race de chien parmi les trois classes disponibles.
 
 ## Mode d'emploi
 
