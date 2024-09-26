@@ -18,40 +18,32 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Image téléchargée.', use_column_width=True, width=400)  # Cette option centre l'image
 
-    # Déterminer le nom réel basé sur le nom du fichier
-    file_path = uploaded_file.name  # Obtenir le nom du fichier avec son chemin
-    if "n02097658" in file_path:
-        real_name = "Silky Terrier"
-    elif "n02099601" in file_path:
-        real_name = "Golden Retriever"
-    elif "n02106662" in file_path:
-        real_name = "German Shepherd"
-    else:
-        real_name = "Inconnu"
-
-    # Redimensionner l'image à la taille attendue par Xception (299, 299)
-    image = image.resize((299, 299))
     
-    # Prétraitement de l'image
-    img = img_to_array(image)
-    img = np.expand_dims(img, axis=0)  # Ajouter une dimension pour correspondre à l'entrée du modèle
-    img = img / 255.0  # Normaliser l'image
+    # Bouton pour déclencher la prédiction
+    if st.button('Prédire'):
 
-    # Prédiction avec le modèle Xception
-    prediction_xception = model_xception.predict(img)
+        # Redimensionner l'image à la taille attendue par Xception (299, 299)
+        image = image.resize((299, 299))
+        
+        # Prétraitement de l'image
+        img = img_to_array(image)
+        img = np.expand_dims(img, axis=0)  # Ajouter une dimension pour correspondre à l'entrée du modèle
+        img = img / 255.0  # Normaliser l'image
 
-    # Récupérer la classe prédite
-    predicted_class_xception = np.argmax(prediction_xception)
+        # Prédiction avec le modèle Xception
+        prediction_xception = model_xception.predict(img)
 
-    # Liste des noms de races mise à jour
-    breed_names = ['Silky Terrier', 'Golden Retriever', 'German Shepherd']
+        # Récupérer la classe prédite
+        predicted_class_xception = np.argmax(prediction_xception)
 
-    # Nom prédit par le modèle
-    predicted_name = f"Nom prédit par Xception : {breed_names[predicted_class_xception]}"
+        # Liste des noms de races mise à jour
+        breed_names = ['Silky Terrier', 'Golden Retriever', 'German Shepherd']
 
-    # Affichage formaté avec des tailles de police plus grandes
-    st.markdown(f"<h4 style='text-align: center; color: black;'>Nom réel : {real_name}</h4>", unsafe_allow_html=True)
-    st.markdown(f"<h2 style='text-align: center; color: blue;'>{predicted_name}</h2>", unsafe_allow_html=True)
+        # Nom prédit par le modèle
+        predicted_name = f"Nom prédit par Xception : {breed_names[predicted_class_xception]}"
+
+        # Affichage formaté avec des tailles de police plus grandes
+        st.markdown(f"<h2 style='text-align: center; color: blue;'>{predicted_name}</h2>", unsafe_allow_html=True)
 
 
 
