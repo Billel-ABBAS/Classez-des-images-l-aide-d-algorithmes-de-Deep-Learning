@@ -29,14 +29,37 @@ from sklearn.metrics import confusion_matrix, classification_report, precision_r
 
 ### Partie prétraitement
 
-# Fonction pour charger une image et la convertir en tableau de pixels
-def load_image(image_path):
+# Fonction fusionnée pour charger, redimensionner et afficher les images
+def load_and_display_images(image_paths, titles, target_size=None):
     """
-    Charge l'image et la convertit en tableau de pixels (img_array).
+    Charge, redimensionne et affiche une série d'images dans une grille avec les titres correspondants.
+    
+    Parameters:
+    - image_paths: Liste des chemins des images à afficher.
+    - titles: Liste des titres correspondant aux images (à afficher sous chaque image).
+    - target_size: Taille à laquelle redimensionner les images (largeur, hauteur).
     """
-    img_array = img_to_array(load_img(image_path))
-    print(f"L'image a été chargée avec la forme {img_array.shape}")
-    return img_array
+    # Créer une figure pour afficher les images
+    plt.figure(figsize=(15, 5))
+
+    # Boucle pour charger, redimensionner et afficher les images
+    for i, image_path in enumerate(image_paths):
+        # Charger et redimensionner l'image
+        img = load_img(image_path, target_size=target_size)
+        img_array = img_to_array(img)  # Convertir l'image en tableau de pixels
+        
+        # Afficher la confirmation dans la console
+        print(f"L'image du {titles[i]} a été chargée avec la forme {img_array.shape}")
+
+        # Afficher l'image
+        plt.subplot(1, len(image_paths), i + 1)  # Positionner l'image sur une grille (1 ligne et N colonnes)
+        plt.imshow(np.uint8(img_array))  # Afficher l'image redimensionnée
+        plt.title(titles[i])  # Ajouter le titre correspondant à chaque image
+        plt.axis('off')  
+
+    # Afficher toutes les images
+    plt.tight_layout()
+    plt.show()
 
 # Fonction pour appliquer toutes les transformations possibles à l'image
 def apply_transformations(img_array):
@@ -145,10 +168,10 @@ def create_image_generator():
       zoom_range=0.25,             # Zoom jusqu'à 25%
       horizontal_flip=True,        # Flip horizontal des images
       fill_mode='nearest',         # Remplissage des pixels manquants par la valeur la plus proche
-      brightness_range=(0.9, 1.1), # Variation de luminosité entre 90% et 110% (conservé de l'ancienne version)
-      channel_shift_range=0.1,     # Ajustement des canaux de couleur jusqu'à 10% (conservé de l'ancienne version)
-      vertical_flip=True,          # flip vertical pour les images de chiens (conservé de l'ancienne version)
-      validation_split=0.2         # Réservation de 20% des données pour la validation (conservé de l'ancienne version)
+      brightness_range=(0.9, 1.1), # Variation de luminosité entre 90% et 110% 
+      channel_shift_range=0.1,     # Ajustement des canaux de couleur jusqu'à 10% 
+      vertical_flip=True,          # flip vertical pour les images de chiens 
+      validation_split=0.2         # Réservation de 20% des données pour la validation 
   )
   
   
