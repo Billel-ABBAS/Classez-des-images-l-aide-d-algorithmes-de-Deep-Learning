@@ -1,6 +1,6 @@
 # Projet de Classification de Races de Chiens avec CNN et Transfer Learning
 
-Ce projet a été réalisé dans le cadre du cursus d'ingénieur machine learning proposé par Openclassrooms.
+Ce projet a été réalisé dans le cadre du cursus d'ingénieur machine learning proposé par centralesupélec et Openclassrooms.
 
 L'objectif est de comparer un modèle CNN développé "from scratch" avec des modèles pré-entraînés utilisant le **Transfer Learning**. J'ai exploré plusieurs approches, notamment les architectures **VGG16** et **Xception**, pour classifier des races de chiens.
 
