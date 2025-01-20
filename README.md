@@ -23,7 +23,7 @@ Une application **Streamlit** a été développée pour permettre de prédire la
 
 L'application **Streamlit** est déployée sur **Streamlit Cloud** et accessible via ce lien :
 
-[Accéder à l'application Streamlit](https://geekderbzsqrebfdqdbnce.streamlit.app/)
+[Accéder à l'application Streamlit](https://classez-des-images-l-aide-d-algorithmes-de-deep-learning-giqxy.streamlit.app/)
 
 ---
 
