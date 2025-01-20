@@ -10,6 +10,10 @@ model_xception = tf.keras.models.load_model('model/xception_best_model.keras')
 # Affichage du titre avec un style amélioré (couleur, taille, alignement)
 st.markdown("<h1 style='text-align: center; color: #4CAF50;'>Prédiction de la race de chiens avec Xception</h1>", unsafe_allow_html=True)
 
+# Message informatif pour les utilisateurs
+st.write("**Note** : Ce modèle de prédiction fonctionne uniquement pour les races de chiens suivantes :")
+st.write("- Silky Terrier\n- Golden Retriever\n- German Shepherd")
+
 # Téléchargement d'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisir une image de chien...", type="jpg")
 
